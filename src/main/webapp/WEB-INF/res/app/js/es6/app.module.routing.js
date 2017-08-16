@@ -6,8 +6,5 @@ export default function routing($routeProvider, $locationProvider) {
 		.when('/', {
 			redirectTo: '/dashboard'
 		})
-		.when('/dashboard', {
-			redirectTo: '/profile'
-		})
 		.otherwise('/404');
 }
