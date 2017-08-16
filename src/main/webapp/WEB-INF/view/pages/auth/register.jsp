@@ -1,13 +1,10 @@
-
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:set var="app" value="${pageContext.servletContext.contextPath}" />
 
 <!DOCTYPE html>
-<html lang="en" ng-app="timeOffApp">
+<html lang="en" ng-app="app">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,19 +12,19 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<base href="${app}/">
-		<title>TimeOff</title>
-		<link rel="styleSheet" href="res/app/js/node_modules/angular-ui-grid/ui-grid.css"/>
+		<title>App Name</title>
 		<link rel="stylesheet" href="res/app/js/node_modules/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" href="res/app/js/node_modules/font-awesome/css/font-awesome.css">
 		<link rel="stylesheet" href="res/app/js/node_modules/admin-lte/dist/css/AdminLTE.css">
 		<link rel="stylesheet" href="res/app/js/node_modules/admin-lte/dist/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="res/app/css/app.css">
 	</head>
 	
 	<body class="skin-blue register-page">
 
 		<div class="register-box">
 			<div class="register-logo">
-				<a href="#!/"><b>Time</b>Off</a>
+				<a href="#!/"><b>App</b>Name</a>
 			</div>
 
 			<div class="register-box-body">
@@ -36,6 +33,7 @@
 						<div class="alert alert-danger">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
 							<strong>Register failed!</strong>
+							<p>${error}</p>
 						</div>
 					</c:if>
 				</div>
