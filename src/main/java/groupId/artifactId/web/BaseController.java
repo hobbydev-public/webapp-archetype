@@ -1,7 +1,3 @@
-/**
- * This software is licensed under the terms of the MIT license.
- * Copyright (C) 2016 Dmytro Romenskyi
- */
 package groupId.artifactId.web;
 		
 import org.springframework.security.access.prepost.PreAuthorize;
