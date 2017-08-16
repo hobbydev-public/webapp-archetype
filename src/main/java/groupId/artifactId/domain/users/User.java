@@ -1,17 +1,12 @@
-/**
- * This software is licensed under the terms of the MIT license.
- * Copyright (C) 2016 Dmytro Romenskyi
- */
 package groupId.artifactId.domain.users;
 
+import groupId.artifactId.domain.core.IdentifiedEntityInterface;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-
-import groupId.artifactId.domain.IdentifiedEntityInterface;
 
 @Entity
 @Table(name="users")

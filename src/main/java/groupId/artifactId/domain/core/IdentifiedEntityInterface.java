@@ -1,8 +1,4 @@
-/**
- * This software is licensed under the terms of the MIT license.
- * Copyright (C) 2016 Dmytro Romenskyi
- */
-package groupId.artifactId.domain;
+package groupId.artifactId.domain.core;
 
 /**
  * Designates a persistent entity that has a unique numeric ID
@@ -21,7 +17,4 @@ public interface IdentifiedEntityInterface {
 	 * @param id ID to set
      */
 	void setId(Long id);
-	
-	boolean isDeleted();
-	void setDeleted(boolean isDeleted);
 }
