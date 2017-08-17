@@ -6,24 +6,24 @@ import groupId.artifactId.utils.DateUtils;
 
 import java.util.Date;
 
-public class UserModel extends AbstractModel {
+public class PrincipalModel extends AbstractModel {
     
-    private String email = "";
-    private String firstName;
-    private String lastName;
-    private Date birthDate;
+    protected String email;
+    protected String firstName;
+    protected String lastName;
+    protected Date birthDate;
+    protected boolean authenticated;
     
-    protected UserModel(){}
+    protected PrincipalModel(){}
     
-    public UserModel(User domain) {this(domain, true);}
-    
-    public UserModel(User domain, boolean deep) {
+    public PrincipalModel(User domain) {
         super(domain);
         
         this.email = domain.getEmail();
         this.firstName = domain.getFirstName();
         this.lastName = domain.getLastName();
         this.birthDate = DateUtils.toDate(domain.getBirthDate());
+        this.authenticated = true;
     }
     
     @Override
@@ -70,5 +70,13 @@ public class UserModel extends AbstractModel {
     
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+    
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
+    
+    public void setAuthenticated(boolean authenticated) {
+        this.authenticated = authenticated;
     }
 }
