@@ -2,6 +2,7 @@ package groupId.artifactId.web;
 
 import groupId.artifactId.business.exception.ResourceForbiddenOperationException;
 import groupId.artifactId.business.exception.ResourceNotFoundException;
+import groupId.artifactId.business.services.UserService;
 import groupId.artifactId.domain.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

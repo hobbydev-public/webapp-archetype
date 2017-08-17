@@ -11,5 +11,9 @@ public class ResourceNotFoundException extends Exception {
 	public ResourceNotFoundException(String message, Throwable cause) {
 		super(message, cause);
 	}
+	
+	public ResourceNotFoundException(Long id, String resourceName) {
+		super(resourceName + " resource with ID=[" + id + "] is not found.");
+	}
 
 }

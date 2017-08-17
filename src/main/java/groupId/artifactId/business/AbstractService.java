@@ -1,14 +1,10 @@
-/**
- * This software is licensed under the terms of the MIT license.
- * Copyright (C) 2016 Dmytro Romenskyi
- */
 package groupId.artifactId.business;
 
+import groupId.artifactId.data.DefaultDAO;
+import groupId.artifactId.domain.core.IdentifiedEntityInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
-import groupId.artifactId.domain.IdentifiedEntityInterface;
-import groupId.artifactId.data.DefaultDAO;
 
 /**
  * Abstract entity service implementation
@@ -25,26 +21,19 @@ public abstract class AbstractService {
 	protected DefaultDAO getDAO() {
 		return dao;
 	}
-
+	
 	@Transactional
 	public boolean delete(Long id) {
+		return delete(id, getEntityClass());
+	}
+	
+	@Transactional
+	public boolean delete(Long id, Class<? extends IdentifiedEntityInterface> clazz) {
 		if(id == null) {
-			throw new IllegalArgumentException("Provided ID is NULL");
+			return false;
 		}
 		
-		if(softDelete) {
-			final boolean[] isDeleted = {false};
-			getDAO().getAll(getEntityClass()).stream()
-					.filter(e -> e.getId().equals(id))
-					.findFirst()
-					.ifPresent(s -> {
-						s.setDeleted(true);
-						isDeleted[0] = true;
-					});
-			return isDeleted[0];
-		} else {
-			return getDAO().delete(getEntityClass(), id);
-		}
+		return getDAO().delete(clazz, id);
 	}
 
 }
