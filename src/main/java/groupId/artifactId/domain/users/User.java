@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 
 @Entity
@@ -24,6 +25,16 @@ public class User implements IdentifiedEntityInterface, UserDetails {
 	
 	@Column(name="password")
 	private String password;
+	
+	@Column(name = "restore_key")
+	private String restoreKey = null;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	@Column(name = "last_name")
+	private String lastName;
+	@Column(name = "birth_date")
+	private LocalDate birthDate = LocalDate.now();
 
 	@Override
 	public Long getId() {
@@ -56,7 +67,39 @@ public class User implements IdentifiedEntityInterface, UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	public String getRestoreKey() {
+		return restoreKey;
+	}
+	
+	public void setRestoreKey(String restoreKey) {
+		this.restoreKey = restoreKey;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+	
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -91,7 +134,9 @@ public class User implements IdentifiedEntityInterface, UserDetails {
 	@Override
 	@Transient
 	public boolean isEnabled() {
-		return true;
+		return password != null &&
+				!password.trim().isEmpty() &&
+				(restoreKey == null || restoreKey.trim().isEmpty());
 	}
 
 	@Override
