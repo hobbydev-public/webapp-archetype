@@ -51,7 +51,7 @@
 						<label for="email">Email</label>
 
 						<input type="email" class="form-control"
-							   id="email" name="email"
+							   id="email" name="email" value="${email}"
 							   placeholder="Email" autofocus="autofocus" required="required"/>
 
 						<i class="glyphicon glyphicon-envelope form-control-feedback"></i>

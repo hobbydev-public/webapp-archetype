@@ -1,17 +1,13 @@
-/**
- * This software is licensed under the terms of the MIT license.
- * Copyright (C) 2016 Dmytro Romenskyi
- */
 package groupId.artifactId.domain.users;
 
+import groupId.artifactId.domain.core.IdentifiedEntityInterface;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
-
-import groupId.artifactId.domain.IdentifiedEntityInterface;
 
 @Entity
 @Table(name="users")
@@ -24,14 +20,21 @@ public class User implements IdentifiedEntityInterface, UserDetails {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="username")
-	private String username;
+	@Column(name="email")
+	private String email;
 	
 	@Column(name="password")
 	private String password;
-
-	@Column(name="isDeleted")
-	private boolean deleted;
+	
+	@Column(name = "restore_key")
+	private String restoreKey = null;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	@Column(name = "last_name")
+	private String lastName;
+	@Column(name = "birth_date")
+	private LocalDate birthDate = LocalDate.now();
 
 	@Override
 	public Long getId() {
@@ -42,14 +45,18 @@ public class User implements IdentifiedEntityInterface, UserDetails {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	@Override
-	public String getUsername() {
-		return username;
+	
+	public String getEmail() {
+		return email;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@Override
+	public String getUsername() {
+		return getEmail();
 	}
 
 	@Override
@@ -60,15 +67,39 @@ public class User implements IdentifiedEntityInterface, UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public boolean isDeleted() {
-		return deleted;
+	
+	public String getRestoreKey() {
+		return restoreKey;
 	}
-
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
+	
+	public void setRestoreKey(String restoreKey) {
+		this.restoreKey = restoreKey;
 	}
-
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+	
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,7 +134,9 @@ public class User implements IdentifiedEntityInterface, UserDetails {
 	@Override
 	@Transient
 	public boolean isEnabled() {
-		return true;
+		return password != null &&
+				!password.trim().isEmpty() &&
+				(restoreKey == null || restoreKey.trim().isEmpty());
 	}
 
 	@Override
