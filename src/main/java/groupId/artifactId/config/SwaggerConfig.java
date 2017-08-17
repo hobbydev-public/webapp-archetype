@@ -1,14 +1,11 @@
-/**
- * This software is licensed under the terms of the MIT license.
- * Copyright (C) 2016 Dmytro Romenskyi
- */
 package groupId.artifactId.config;
 
+import groupId.artifactId.Application;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.CookieValue;
-
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -16,11 +13,9 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import groupId.artifactId.Application;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.security.core.Authentication;
 
 /**
  * Swagger configuration
@@ -77,7 +72,12 @@ public class SwaggerConfig {
 				"API for public use and integration",
 				"1.0",
 				"tos",
-				new Contact("Dmytro Romenskyi", "https://ua.linkedin.com/in/dmytro-romenskyi-87035524", "d.romenskyi@gmail.com"),
+				
+				new Contact(
+						"Full Name",
+						"http link",
+						"email"),
+				
 				"This software is licensed under the terms of the MIT license.",
 				"res/app/LICENSE.md");
 		return apiInfo;

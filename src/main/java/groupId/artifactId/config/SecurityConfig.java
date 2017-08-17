@@ -1,7 +1,3 @@
-/**
- * This software is licensed under the terms of the MIT license.
- * Copyright (C) 2016 Dmytro Romenskyi
- */
 package groupId.artifactId.config;
 
 import org.jasypt.springsecurity3.authentication.encoding.PasswordEncoder;
@@ -62,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/login#").permitAll()
 				.loginProcessingUrl("/login")
-				.usernameParameter("username")
+				.usernameParameter("email")
 				.passwordParameter("password")
 				.defaultSuccessUrl("/", false)
 				.failureUrl("/login?error")
