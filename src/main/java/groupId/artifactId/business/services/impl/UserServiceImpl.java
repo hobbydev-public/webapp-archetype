@@ -61,7 +61,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
     
     @Override
     @Transactional
-    public Long addUser(User user) throws ResourceForbiddenOperationException {
+    public User addUser(User user) throws ResourceForbiddenOperationException {
         if(user == null) {
             throw new IllegalArgumentException("User is null");
         }
@@ -75,7 +75,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
         }
         
         user.setPassword(passwordEncoder.encodePassword(user.getPassword(), null));
-        return getDAO().create(user);
+        getDAO().create(user);
+        
+        return user;
     }
     
     @Override

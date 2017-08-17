@@ -16,7 +16,7 @@ public interface UserService extends UserDetailsService {
     
     List<User> listUsers();
     User getUser(Long id)  throws ResourceNotFoundException;
-    Long addUser(User user) throws ResourceForbiddenOperationException;
+    User addUser(User user) throws ResourceForbiddenOperationException;
     User updateUser(User user) throws ResourceNotFoundException, ResourceForbiddenOperationException;
     boolean deleteUser(Long id) throws ResourceForbiddenOperationException;
     
